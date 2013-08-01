@@ -1,25 +1,32 @@
 <project name="jeu_cartes" basedir="." default="main">
 
-	<property name="src.dir" value="src"/>
-	<property name="build.dir" value="build"/>
-	<property name="classes.dir" value="${build.dir}/classes"/>
-	<property name="jar.dir" value="${build.dir}/jar"/>
+	<property name="src_dir" value="src"/>
+	<property name="build_dir" value="build"/>
+	<property name="classes_dir" value="${build_dir}/classes"/>
+	<property name="jar_dir" value="${build_dir}/jar"/>
+	<property name="media_dir" value="media"/>
+	<property name="shippable_dir" value="jeu_0.0.1"/>
+	<property name="jar_file" value="${jar_dir}/${ant.project.name}.jar"/>
+	<property name="readme_file" value="README.md"/>
+
+	<!-- this file, the ant build file -->
+	<property name="build_file" value="build.xml"/>
 
 	<property name="main-class" value="gui.MainGUI"/>
 
 
 	<target name="clean">
-		<delete dir="${build.dir}"/>
+		<delete dir="${build_dir}"/>
 	</target>
 
 	<target name="compile">
-		<mkdir dir="${classes.dir}"/>
-		<javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+		<mkdir dir="${classes_dir}"/>
+		<javac srcdir="${src_dir}" destdir="${classes_dir}"/>
 	</target>
 
 	<target name="jar" depends="compile">
-		<mkdir dir="${jar.dir}"/>
-		<jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+		<mkdir dir="${jar_dir}"/>
+		<jar destfile="${jar_file}" basedir="${classes_dir}">
 			<manifest>
 				<attribute name="Main-Class" value="${main-class}"/>
 			</manifest>
@@ -27,10 +34,23 @@
 	</target>
 
 	<target name="run" depends="jar">
-		<java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+		<java jar="${jar_dir}/${ant.project.name}.jar" fork="true"/>
 	</target>
 
 	<target name="clean-build" depends="clean,jar"/>
+
+	<target name="shippable" depends="clean-build">
+		<copy todir="${shippable_dir}/media">
+			<fileset dir="${media_dir}"/>
+		</copy>
+		<copy file="${jar_file}" todir="${shippable_dir}"/>
+		<copy todir="${shippable_dir}/src">
+			<fileset dir="${src_dir}"/>
+		</copy>
+		<copy file="${build_file}" todir="${shippable_dir}"/>
+		<copy file="${readme_file}" todir="${shippable_dir}"/>
+	</target>
+
 
 	<target name="main" depends="clean,run"/>
 

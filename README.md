@@ -1,8 +1,18 @@
 
-displaying svg cards in java swing
+
+Card Games
+
+Pierre Feilles
 
 
-vectorized playing cards by Chris Aguilar :
+
+
+
+
+
+Credits:
+
+playing cards by Chris Aguilar :
 https://code.google.com/p/vectorized-playing-cards/
 
 
