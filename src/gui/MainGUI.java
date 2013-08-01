@@ -6,7 +6,8 @@ import javax.swing.*;
 
 //import java.awt.image.BufferedImage;
 //import javax.imageio.*;
-//import java.io.File;
+import java.io.File;
+import java.util.Random;
 //import java.io.IOException;
 //import java.io.FileNotFoundException;
 
@@ -55,11 +56,36 @@ public class MainGUI extends JFrame {
 
 		String filename10H = "media/cards_gif/10H.gif";
 		CardPanel cp10H = new CardPanel(filename10H);
-
 		
-		frame.add(cp10C);
-		frame.add(cp10D);
-		frame.add(cp10H);
+		File folder = new File("media/cards_gif");
+		File[] listOfFiles = folder.listFiles();
+		
+//		for (int i=0; i < listOfFiles.length; i++) {
+//			System.out.println("File : " + listOfFiles[i].getName());
+//		}
+		
+		int range = listOfFiles.length;
+		System.out.println(range);
+		
+		Random rand = new Random();
+		String [] xString = new String[6];
+		int [] x = new int[6];
+		CardPanel [] cpx = new CardPanel[6];
+		
+		for (int i = 0; i < 6; i++) {
+			x[i] = rand.nextInt(range);
+			System.out.println(x[i]);
+			xString[i] = "media/cards_gif/" + listOfFiles[i].getName();
+			System.out.println(xString[i]);
+			cpx[i] = new CardPanel(xString[i]);
+			frame.add(cpx[i]);
+			
+		}
+			
+		
+//		frame.add(cp10C);
+//		frame.add(cp10D);
+//		frame.add(cp10H);
 
 	
 		frame.setVisible(true);
