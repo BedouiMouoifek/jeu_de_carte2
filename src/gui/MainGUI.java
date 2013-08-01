@@ -1,44 +1,67 @@
 package gui;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+//import java.awt.event.*;
 import javax.swing.*;
-import javax.imageio.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.FileNotFoundException;
+
+//import java.awt.image.BufferedImage;
+//import javax.imageio.*;
+//import java.io.File;
+//import java.io.IOException;
+//import java.io.FileNotFoundException;
 
 public class MainGUI extends JFrame {
 	
+	private final int BOARD_WIDTH = 1000;
+	private final int BOARD_HEIGHT = 800; 
+	
+	public MainGUI() {
+		setTitle("JEUX DE CARTES");
+		setSize(BOARD_WIDTH, BOARD_HEIGHT);
+		setLayout(new GridLayout(2, 3));
+		setLocationRelativeTo(null); // Center the frame
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+	
+
+//	private static class ButtonHandler implements ActionListener {
+//		public void actionPerformed(ActionEvent e) {
+//			System.exit(0);
+//		}
+//	}
+	
+	
 	public static void main(String[] args) {
 
-		
-		System.out.println(new File(".").getAbsolutePath());
-		
-		
-		JFrame frame = new JFrame();
-		
-		
-		String filename = "media/cards_gif/10C.gif";
-		File imageFile = new File(filename);
-		BufferedImage image = null;
-		try {		
-			image = ImageIO.read(imageFile);
-		} 
-		catch (IOException e) {
-		}
-		CardPanel cardPanel = new CardPanel(filename);
-
-				
-		
-		frame.add(cardPanel);
+//		String filename2 = "media/cards_gif/10D.gif";
+//		File imageFile2 = new File(filename2);
+//		BufferedImage image2 = null;
+//		try {		
+//			image2 = ImageIO.read(imageFile2);
+//		} 
+//		catch (IOException e) {
+//		}
 
 		
+		MainGUI frame = new MainGUI();
 		
-		frame.setTitle("afficher carte");
-		frame.setSize(600,600);
-		frame.setLocationRelativeTo(null); // Center the frame
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+		String filename10C = "media/cards_gif/10C.gif";
+		CardPanel cp10C = new CardPanel(filename10C);
+		
+		String filename10D = "media/cards_gif/10D.gif";
+		CardPanel cp10D = new CardPanel(filename10D);
+
+		String filename10H = "media/cards_gif/10H.gif";
+		CardPanel cp10H = new CardPanel(filename10H);
+
+		
+		frame.add(cp10C);
+		frame.add(cp10D);
+		frame.add(cp10H);
+
+	
 		frame.setVisible(true);
 		
 	}
