@@ -13,13 +13,13 @@ import java.util.Random;
 
 public class MainGUI extends JFrame {
 	
-	private final int BOARD_WIDTH = 1000;
-	private final int BOARD_HEIGHT = 800; 
+	private final int BOARD_WIDTH = 900;
+	private final int BOARD_HEIGHT = 700; 
 	
 	public MainGUI() {
 		setTitle("JEUX DE CARTES");
 		setSize(BOARD_WIDTH, BOARD_HEIGHT);
-		setLayout(new GridLayout(2, 3));
+		setLayout(new GridLayout(2, 4));
 		setLocationRelativeTo(null); // Center the frame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -67,7 +67,11 @@ public class MainGUI extends JFrame {
 		int range = listOfFiles.length;
 		System.out.println(range);
 		
-		Random rand = new Random();
+		long seed = System.currentTimeMillis();
+		Random rand = new Random(seed);
+		System.out.println(seed);
+		System.out.println(rand);
+		
 		String [] xString = new String[6];
 		int [] x = new int[6];
 		CardPanel [] cpx = new CardPanel[6];
@@ -75,19 +79,22 @@ public class MainGUI extends JFrame {
 		for (int i = 0; i < 6; i++) {
 			x[i] = rand.nextInt(range);
 			System.out.println(x[i]);
-			xString[i] = "media/cards_gif/" + listOfFiles[i].getName();
+			xString[i] = "media/cards_gif/" + listOfFiles[x[i]].getName();
 			System.out.println(xString[i]);
 			cpx[i] = new CardPanel(xString[i]);
 			frame.add(cpx[i]);
 			
 		}
-			
+		
+		frame.add(cp10H);
+		frame.add(cp10D);
+		
 		
 //		frame.add(cp10C);
 //		frame.add(cp10D);
 //		frame.add(cp10H);
 
-	
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
 	}
@@ -107,8 +114,8 @@ class CardPanel extends JPanel {
 		super.paintComponent(g);
 		
 		if (image != null){
-			Integer height = image.getHeight(this);
-			Integer width = image.getWidth(this);
+			Integer height = (int) ( (double) image.getHeight(this)/1.4 );
+			Integer width = (int) ( (double) image.getWidth(this)/1.4);
 			g.drawImage(image, 0, 0, width, height , this);
 		}
 	}
