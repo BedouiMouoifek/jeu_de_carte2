@@ -12,8 +12,10 @@
 	<!-- this file, the ant build file -->
 	<property name="build_file" value="build.xml"/>
 
-	<property name="main-class" value="gui.MainGUI"/>
 
+	<property name="main-class" value="eck.BlackjackGUI"/>
+<!-- 	<property name="main-class" value="gui.MainGUI"/>
+ -->
 
 	<target name="clean">
 		<delete dir="${build_dir}"/>
