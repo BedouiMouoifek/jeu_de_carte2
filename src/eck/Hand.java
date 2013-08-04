@@ -1,6 +1,6 @@
 package eck;
 
-// library from David Eck
+// library by David Eck
 // http://math.hws.edu/javanotes/source/index.html
 
 /**

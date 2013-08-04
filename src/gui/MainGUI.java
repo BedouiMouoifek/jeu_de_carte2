@@ -100,6 +100,7 @@ public class MainGUI extends JFrame {
 	}
 }
 
+
 class CardPanel extends JPanel {
 	private ImageIcon imageIcon;
 	private Image image;

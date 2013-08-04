@@ -1,6 +1,6 @@
 package eck;
 
-// library from David Eck
+// library by David Eck
 // http://math.hws.edu/eck/cs124/javanotes6/c6/ex9-ans.html
 
 

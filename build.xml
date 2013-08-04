@@ -19,6 +19,7 @@
 
 	<target name="clean">
 		<delete dir="${build_dir}"/>
+		<delete dir="${shippable_dir}"/>
 	</target>
 
 	<target name="compile">
@@ -42,6 +43,7 @@
 	<target name="clean-build" depends="clean,jar"/>
 
 	<target name="shippable" depends="clean-build">
+		<mkdir dir="${shippable_dir}"/>
 		<copy todir="${shippable_dir}/media">
 			<fileset dir="${media_dir}"/>
 		</copy>
