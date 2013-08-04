@@ -32,16 +32,15 @@ public class BlackjackGUI extends JPanel {
     * The main routine simply opens a window that shows a BlackjackGUI.
     */
    public static void main(String[] args) {
-      JFrame window = new JFrame("Blackjack");
-      BlackjackGUI content = new BlackjackGUI();
-      window.setContentPane(content);
-      window.pack();  // Set size of window to preferred size of its contents.
-      window.setResizable(false);  // User can't change the window's size.
-      Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-      window.setLocation( (screensize.width - window.getWidth())/2, 
-            (screensize.height - window.getHeight())/2 );
-      window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-      window.setVisible(true);
+	   JFrame window = new JFrame("Blackjack");
+	   BlackjackGUI content = new BlackjackGUI();
+	   window.setContentPane(content);
+	   window.pack();  // Set size of window to preferred size of its contents.
+	   window.setResizable(false);  // User can't change the window's size.
+	   Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+	   window.setLocationRelativeTo(null);
+	   window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+	   window.setVisible(true);
    }
       
    
@@ -281,29 +280,21 @@ public class BlackjackGUI extends JPanel {
          if (card == null) {  
                // Draw a face-down card
             g.setColor(Color.blue);
-            g.fillRect(x,y,80,100);
+            g.fillRect(x+10, y + 10,65,90);
             g.setColor(Color.white);
-            g.drawRect(x+3,y+3,73,93);
-            g.drawRect(x+4,y+4,71,91);
+            g.drawRect(x+10, y + 10, 65,90);
          }
          else {
-            g.setColor(Color.white);
-            g.fillRect(x,y,80,100);
-            g.setColor(Color.gray);
-            g.drawRect(x,y,79,99);
-            g.drawRect(x+1,y+1,77,97);
-            if (card.getSuit() == Card.DIAMONDS || card.getSuit() == Card.HEARTS)
-               g.setColor(Color.red);
-            else
-               g.setColor(Color.black);
-            g.drawString(card.getValueAsString(), x + 10, y + 30);
-            g.drawString("of", x+ 10, y + 50);
-            g.drawString(card.getSuitAsString(), x + 10, y + 70);
+			// image generation
+			String filename = "media/cards_gif/" + card.getCardToDisplay() + ".gif";
+			ImageIcon imageIcon = new ImageIcon(filename);
+			Image image = imageIcon.getImage();
+			Integer height = (int) ( (double) image.getHeight(this)/2.8 );
+			Integer width =  (int) ( (double) image.getWidth(this)/2.8 ) ;
+			g.drawImage(image, x, y, width, height,this);
          }
       }  // end drawCard()
       
-      
    } // end nested class CardPanel
-   
    
 } // end class BlackjackGUI
