@@ -39,8 +39,6 @@ public class BlackjackGUI extends JPanel {
     * The constructor lays out the panel.  A CardPanel occupies the CENTER 
     * position of the panel (where CardPanel is a subclass of JPanel that is 
     * defined below).  On the bottom is a panel that holds three buttons.  
-    * The CardPanel listens for ActionEvents from the buttons and does all 
-    * the real work of the program.
     */
    public BlackjackGUI() {
       
@@ -78,23 +76,21 @@ public class BlackjackGUI extends JPanel {
       });
       buttonPanel.add(newGame);
       
-      final JCheckBox displayCalculations = new JCheckBox("calculs");
-      displayCalculations.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			if (displayCalculations.isSelected()) {
-				System.out.println("-- checked --");
-			}
-			else {
-				System.out.println("-- unchecked --");
-			}
-		}
-      });
-      buttonPanel.add(displayCalculations);
+//      final JCheckBox displayCalculations = new JCheckBox("calculs");
+//      displayCalculations.addActionListener(new ActionListener() {
+//		public void actionPerformed(ActionEvent e) {
+//			if (displayCalculations.isSelected()) {
+//				System.out.println("-- checked --");
+//			}
+//			else {
+//				System.out.println("-- unchecked --");
+//			}
+//		}
+//      });
+//      buttonPanel.add(displayCalculations);
 
       setBorder(BorderFactory.createLineBorder( new Color(130,50,40), 3) );
       
    }  // end constructor
-   
-   
    
 } // end class BlackjackGUI
